@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matrix Chain Multiplication Problem Solver</title>
+    <link rel="stylesheet" href="matrixstyle.css">
+</head>
+<body>
+    <h1>Matrix Chain Multiplication Problem Solver</h1>
+    <div class="main">
+        <div>
+            <label for="matrices" class="label">Matrix Dimensions:</label>
+            <input type="text" class="input" id="matrices" placeholder="Enter matrix dimensions "><br><br>
+            <div class="btns"><button id="solveMatrixChainBtn" class="btn">Solve Matrix Chain Multiplication Problem</button></div>
+            <p id="result" class="answer"></p>
+        </div>
+        <div class="intro">
+            <p>Most of the time, Dynamic Programming is essentially a more efficient version of recursion. Dynamic Programming is used to 
+                optimize any recursive solution that uses the same inputs over and over again. Subproblem results will be saved so that 
+                they do not have to be recalculated as needed in the future. This small optimization reduces the time complexity from 
+                exponential to polynomial.Towards the end of this tutorial, you will have a better understanding of the recursion and 
+                dynamic programming approach to the Matrix Chain Multiplication problem with the essential details and actual implementations.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function solveMatrixChain() {
+            const matrixDimensions = document.getElementById("matrices").value.split(",").map(Number);
+            function matrixChainOrder(p, n) {
+                const m = [];
+                for (let i = 1; i <= n; i++) {
+                    m[i] = [];
+                    m[i][i] = 0;
+                }
+
+                for (let l = 2; l < n; l++) {
+                    for (let i = 1; i < n - l + 1; i++) {
+                        const j = i + l - 1;
+                        m[i][j] = Number.MAX_VALUE;
+                        for (let k = i; k <= j - 1; k++) {
+                            const cost = m[i][k] + m[k + 1][j] + p[i - 1] * p[k] * p[j];
+                            if (cost < m[i][j]) {
+                                m[i][j] = cost;
+                            }
+                        }
+                    }
+                }
+                return m[1][n - 1];
+            }
+
+            const result = matrixChainOrder(matrixDimensions, matrixDimensions.length);
+            document.getElementById("result").innerText = "Minimum number of multiplications needed: " + result;
+        }
+
+        document.getElementById("solveMatrixChainBtn").addEventListener("click", solveMatrixChain);
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+body{
+    background-color:ghostwhite;
+    padding: 30px;
+}
+
+h1{
+    font-size: 64px;
+    text-align: center;
+    color: navy;
+}
+
+.capacity{
+    font-size: 30px;
+    color:black;
+}
+
+.input{
+    border-radius: 10px;
+    font-size: 22px;
+}
+
+.btn{
+    border-radius: 20px;
+    font-size: 20px;
+    height: 60px;
+    width: 250px;
+}
+
+.btns :hover{
+    background-color: rgb(177, 177, 239);
+    box-shadow: 0 20px 30px 0;
+}
+
+.answer{
+    color: black;
+    font-size: 30px;
+}
+
+
+.main{
+    display: inline-flex;
+    width: 100%;
+}
+
+.intro{
+    width: 350px;
+    text-align: justify;
+    border: solid 2px;
+    border-radius: 20px;
+    background-color: #F5EFE6;
+    padding: 15px;
+    margin-left: 450px;
+    transform: translateY(-100%);
+    animation: slideIntro 2s forwards;
+}
+
+.intro p{
+    font-size: 20px;
+}
+
+@keyframes slideIntro {
+    to {
+        transform: translateY(0);
+    }
+}
